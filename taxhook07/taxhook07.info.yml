@@ -1,0 +1,5 @@
+name: taxhook07
+type: module
+description: "Testing Taxonomy update hook"
+package: "Taxonomy update hook"
+core_version_requirement: ^9

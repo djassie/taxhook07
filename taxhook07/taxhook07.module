@@ -1,0 +1,23 @@
+<?php
+use Drupal\taxonomy\Entity\Term; 
+
+/**
+ * Implements hook_taxonomy_term_update().
+ */
+
+function taxhook07_taxonomy_term_update(Term $term){ 
+    $tid = $term->id();
+    $tval = $term->load($tid);
+    $tfield = $tval->field_animal_detail->value;
+    $entity_id = 6;
+
+    update_sidebar($tfield, $entity_id);
+    \Drupal::logger('taxhook06')->notice('inserted');
+}
+ 
+ function update_sidebar($sidebar_string, $eid){
+   \Drupal::service('database')->update('sidebar_val')
+      ->fields(array('field_sidebar_value' => $sidebar_string))
+      ->condition('entity_id', $eid)
+      ->execute();
+ }
